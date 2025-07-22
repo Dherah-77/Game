@@ -8,18 +8,24 @@
 
     <link rel="icon" href="./Images/logo.png" type="Image" />
 
+    <link rel="stylesheet" href="style.css" />
+
     <title>Awwwards</title>
   </head>
   <body>
-    <header class="w-full h-25 bg-black">
+    <header
+      class="w-[95%] h-18 bg-black fixed top-4 left-5 rounded-xl font-circular"
+    >
       <section class="w-full h-auto p-4 flex justify-between items-center">
-        <div class="flex gap-6">
+        <div class="flex gap-6 items-center">
           <img src="./Images/logo.png" alt="Logo-Icon" class="h-10 w-auto" />
-          <div class="bg-white text-black h-10 w-[120px] mx-auto flex">
-            PRODUCTS
+          <div
+            class="bg-white text-black h-10 w-[120px] mx-auto justify-center items-center rounded-2xl gap-2 hidden md:flex"
+          >
+            PRODUCTS <img src="./Images/play.svg" alt="Prod-logo" />
           </div>
         </div>
-        <ul class="text-white flex gap-3">
+        <ul class="text-white hidden gap-4 md:flex">
           <li>NEXUS</li>
           <li>VAULT</li>
           <li>PROLOGUE</li>
@@ -28,5 +34,18 @@
         </ul>
       </section>
     </header>
+    <main>
+      <section class="h-screen w-[100%]">
+        <video
+          class="w-[100%] h-screen object-cover"
+          src="./Videos/hero-1.mp4"
+          type="video/mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+        ></video>
+      </section>
+    </main>
   </body>
 </html>
