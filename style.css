@@ -33,6 +33,22 @@
   font-style: normal;
 }
 
-body {
-  background-color: yellow;
+.font-circular {
+  font-family: "CircularWeb", sans-serif;
+}
+
+.font-general {
+  font-family: "General", sans-serif;
+}
+
+.font-robert-medium {
+  font-family: "RobertMedium", sans-serif;
+}
+
+.font-robert-regular {
+  font-family: "RobertRegular", sans-serif;
+}
+
+.font-zentry {
+  font-family: "Zentry", sans-serif;
 }
