@@ -108,7 +108,7 @@
           on your world.
         </p>
         <div
-          class="relative w-[95%] h-[300px] md:h-[430px] mt-20 mx-auto rounded overflow-hidden"
+          class="relative w-[95%] h-[300px] md:h-[430px] mt-20 ml-auto md:mx-auto rounded overflow-hidden hover:scale-[98%] transform transition duration-300"
         >
           <!-- Video background -->
           <video
@@ -133,7 +133,7 @@
               and Web3 games into a rewarding adventure.
             </p>
             <div
-              class="bg-black rounded-2xl font-general text-[#ffffff33] w-[170px] border border-[#ffffff33] flex items-center gap-2 px-4 py-2 text-[12px] mt-[130px]"
+              class="bg-black rounded-2xl font-general text-[#ffffff33] w-[170px] border border-[#ffffff33] flex items-center gap-2 px-4 py-2 text-[12px] mt-[130px] cursor-pointer"
             >
               <img
                 src="./Images/play.svg"
@@ -144,36 +144,38 @@
             </div>
           </div>
         </div>
+        <!-- Grid Container -->
         <div
-          class="w-full h-auto flex flex-col md:grid md:grid-cols-2 md:grid-rows-3 gap-7"
+          class="w-full md:w-[95%] mx-auto mt-10 flex flex-col md:grid md:grid-cols-2 md:grid-rows-3 gap-4"
         >
+          <!-- FIRST DIV: -->
           <div
-            class="relative w-auto h-auto md:h-[430px] mt-20 mx-auto rounded overflow-hidden"
+            class="relative ml-auto md:row-span-2 w-[98%] md:w-full h-[200px] md:h-[562px] rounded overflow-hidden hover:scale-[95%] transform transition duration-300"
           >
-            <!-- Video background -->
             <video
               src="./Videos/feature-2 (1).mp4"
               class="w-full h-full object-cover"
-              type="video/mp4"
               autoplay
               muted
               loop
               playsinline
             ></video>
-
-            <!-- Text overlay -->
-            <div class="absolute inset-0 text-white p-4 w-1/2">
-              <h2 class="text-3xl md:text-5xl font-zentry font-bold mb-2">
+            <div
+              class="absolute inset-0 p-4 text-white z-10 w-full max-w-[50%]"
+            >
+              <h1
+                class="text-3xl md:text-[60px] font-zentry font-bold mb-2 text-[#DFDFF0] p-4"
+              >
                 ZIGMA
-              </h2>
+              </h1>
               <p
-                class="text-[12px] font-general md:text-lg max-w-xl leading-tight"
+                class="text-[12px] md:text-sm font-general text-[#DFDFF0] leading-tight"
               >
                 An anime and gaming-inspired NFT collection - the IP primed for
                 expansion.
               </p>
               <div
-                class="bg-black rounded-2xl font-general text-[#ffffff33] w-[170px] border border-[#ffffff33] flex items-center gap-2 px-4 py-2 text-[12px] mt-[130px]"
+                class="mt-4 bg-black rounded-2xl font-general text-[#ffffff33] border border-[#ffffff33] w-[170px] flex items-center gap-2 px-4 py-2 text-[12px] cursor-pointer absolute bottom-3"
               >
                 <img
                   src="./Images/play.svg"
@@ -184,33 +186,31 @@
               </div>
             </div>
           </div>
+
+          <!-- SECOND DIV -->
           <div
-            class="relative w-auto h-auto md:h-[430px] mt-20 mx-auto rounded overflow-hidden"
+            class="relative ml-auto w-[80%] md:w-full h-[200px] md:h-[275px] rounded overflow-hidden mt-2 hover:scale-95 transform transition duration-300"
           >
-            <!-- Video background -->
             <video
               src="./Videos/feature-3.mp4"
               class="w-full h-full object-cover"
-              type="video/mp4"
               autoplay
               muted
               loop
               playsinline
             ></video>
-
-            <!-- Text overlay -->
-            <div class="absolute inset-0 text-white p-4 w-1/2">
+            <div
+              class="absolute inset-0 p-4 text-[#DFDFF0] z-10 w-full max-w-[50%]"
+            >
               <h2 class="text-3xl md:text-5xl font-zentry font-bold mb-2">
                 NEXUS
               </h2>
-              <p
-                class="text-[12px] font-general md:text-lg max-w-xl leading-tight"
-              >
+              <p class="text-[12px] md:text-sm font-general leading-tight">
                 A gamified social hub, adding a new dimension of play to social
                 interaction for Web3 communities.
               </p>
               <div
-                class="bg-black rounded-2xl font-general text-[#ffffff33] w-[170px] border border-[#ffffff33] flex items-center gap-2 px-4 py-2 text-[12px] mt-[130px]"
+                class="mt-4 bg-black rounded-2xl font-general text-[#ffffff33] border border-[#ffffff33] w-[170px] flex items-center gap-2 px-4 py-2 text-[12px] absolute bottom-3 cursor-pointer"
               >
                 <img
                   src="./Images/play.svg"
@@ -221,33 +221,30 @@
               </div>
             </div>
           </div>
+
+          <!-- THIRD DIV -->
           <div
-            class="relative w-auto h-auto md:h-[430px] mt-20 mx-auto rounded overflow-hidden"
+            class="relative w-[85%] md:w-full h-[200px] md:h-[275px] rounded overflow-hidden hover:scale-95 transform transition duration-300"
           >
-            <!-- Video background -->
             <video
               src="./Videos/feature-4.mp4"
               class="w-full h-full object-cover"
-              type="video/mp4"
               autoplay
               muted
               loop
               playsinline
             ></video>
-
-            <!-- Text overlay -->
-            <div class="absolute inset-0 text-white p-4 w-1/2">
+            <div
+              class="absolute inset-0 p-4 text-[#DFDFF0] z-10 w-full max-w-[50%]"
+            >
               <h2 class="text-3xl md:text-5xl font-zentry font-bold mb-2">
                 AZUL
               </h2>
-              <p
-                class="text-[12px] font-general md:text-lg max-w-xl leading-tight"
-              >
-                A cross-world AI Agent - elevating your gameplay to be more fun
-                and productive.
+              <p class="text-[12px] font-general md:text-sm leading-tight">
+                A cross-world AI Agent for smarter gameplay.
               </p>
               <div
-                class="bg-black rounded-2xl font-general text-[#ffffff33] w-[170px] border border-[#ffffff33] flex items-center gap-2 px-4 py-2 text-[12px] mt-[130px]"
+                class="mt-4 bg-black rounded-2xl font-general text-[#ffffff33] border border-[#ffffff33] w-[170px] flex items-center gap-2 px-4 py-2 text-[12px] cursor-pointer absolute bottom-3"
               >
                 <img
                   src="./Images/play.svg"
@@ -258,31 +255,68 @@
               </div>
             </div>
           </div>
+
+          <!-- FOURTH DIV -->
           <div
-            class="relative w-auto h-auto md:h-[430px] mt-20 mx-auto rounded bg-[#5724FF] overflow-hidden"
+            class="w-full hidden md:h-[275px] rounded bg-[#5724FF] md:flex items-center justify-center overflow-hidden hover:scale-95 transform transition duration-300"
           >
-            <p class="text-[60px] font-zentry">
+            <p
+              class="text-[30px] md:text-[60px] font-zentry text-black text-center"
+            >
               MORE COMING SOON
               <img
                 src="./Images/play.svg"
                 alt="Play-logo"
-                class="h-[44.10px] w44.19px"
+                class="inline h-[30px] md:h-[44.10px] w-auto ml-2"
               />
             </p>
           </div>
+
+          <!-- FIFTH DIV -->
           <div
-            class="relative w-auto h-auto md:h-[430px] mt-20 mx-auto rounded overflow-hidden"
+            class="w-full hidden md:block md:h-[275px] rounded overflow-hidden hover:scale-95 transform transition duration-300"
           >
-            <!-- Video background -->
             <video
               src="./Videos/feature-5.mp4"
               class="w-full h-full object-cover"
-              type="video/mp4"
               autoplay
               muted
               loop
               playsinline
             ></video>
+          </div>
+
+          <!--Mobile View-->
+          <div
+            class="w-[98%] ml-auto grid grid-cols-2 grid-rows-1 gap-4 md:hidden"
+          >
+            <!-- FOURTH DIV -->
+            <div
+              class="w-full h-[200px] md:h-[275px] rounded bg-[#5724FF] flex items-center justify-center overflow-hidden"
+            >
+              <p
+                class="text-[30px] md:text-[60px] font-zentry text-black text-center"
+              >
+                MORE COMING SOON
+                <img
+                  src="./Images/play.svg"
+                  alt="Play-logo"
+                  class="inline h-[30px] md:h-[44.10px] w-auto ml-2"
+                />
+              </p>
+            </div>
+
+            <!-- FIFTH DIV -->
+            <div class="w-full h-[200px] md:h-[275px] rounded overflow-hidden">
+              <video
+                src="./Videos/feature-5.mp4"
+                class="w-full h-full object-cover"
+                autoplay
+                muted
+                loop
+                playsinline
+              ></video>
+            </div>
           </div>
         </div>
       </section>
