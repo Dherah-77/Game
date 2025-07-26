@@ -331,14 +331,38 @@
           </p>
 
           <!-- Hexagon Image Wrapper -->
-          <div
-            class="absolute top-[90px] left-1/2 -translate-x-1/2 z-10 rounded-xl"
-          >
-            <img
-              src="./Images/entrance.webp"
-              alt="Icon"
-              class="custom-shape h-[300px] md:h-[500px] w-auto opacity-75"
-            />
+         <div class="absolute top-[90px] left-1/2 -translate-x-1/2 z-10">
+            <svg 
+              viewBox="0 0 600 500" 
+              xmlns="http://www.w3.org/2000/svg" 
+              class="h-[300px] md:h-[500px] w-auto opacity-75">
+              
+              <!-- Clipping Path with rounded edges -->
+             <clipPath id="roundedShape">
+                <path 
+                  d="
+                    M40 0
+                    Q 120 20, 500 50 
+                    Q 600 60, 600 140
+                    L 600 380
+                    Q 600 420, 520 440 
+                    Q 320 430, 40 480
+                    Q 0 480, 0 440
+                    L 0 60
+                    Q 0 20, 40 0 Z" />
+              </clipPath>
+
+              
+              <!-- Image -->
+              <image 
+                href="./Images/entrance.webp" 
+                width="600" 
+                height="500" 
+                preserveAspectRatio="xMidYMid slice" 
+                clip-path="url(#roundedShape)" />
+            </svg>
+          </div>
+
           </div>
         </div>
       </section>
