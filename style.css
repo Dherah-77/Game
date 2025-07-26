@@ -52,11 +52,3 @@
 .font-zentry {
   font-family: "Zentry", sans-serif;
 }
-
-.custom-shapemd {
-  width: 600px;
-  height: auto;
-  border-radius: 30px;
-  overflow: hidden;
-  clip-path: polygon(4% 0%, 100% 20%, 100% 20%, 100% 80%, 0% 100%);
-}

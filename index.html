@@ -335,10 +335,24 @@
             <svg 
               viewBox="0 0 600 500" 
               xmlns="http://www.w3.org/2000/svg" 
-              class="h-[300px] md:h-[500px] w-auto opacity-75">
+              class="h-[300px] md:h-[500px] w-auto opacity-75 transform translate hover:scale-95 cursor-pointer">
               
-              <!-- Clipping Path with rounded edges -->
-             <clipPath id="roundedShape">
+              <!-- Clipping Path Desktop View -->
+             <clipPath id="roundedShape" class="hidden md:block">
+                <path 
+                  d="
+                    M40 0
+                    Q 120 20, 500 50 
+                    Q 600 60, 600 140
+                    L 600 380
+                    Q 600 420, 520 440 
+                    Q 320 430, 40 480
+                    Q 0 480, 0 440
+                    L 0 60
+                    Q 0 20, 40 0 Z" />
+              </clipPath>
+
+              <clipPath id="roundedShape2" class="md:hidden">
                 <path 
                   d="
                     M40 0
