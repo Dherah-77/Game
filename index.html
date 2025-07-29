@@ -332,40 +332,40 @@
 
           <!-- Image Wrapper -->
           <div
-            class="relative md:absolute md:top-[90px] left-1/2 -translate-x-1/2 z-10"
+            class="relative md:absolute md:top-[90px] w-full flex justify-center z-10"
           >
             <svg
               viewBox="0 0 600 500"
               xmlns="http://www.w3.org/2000/svg"
-              class="h-[300px] md:h-[500px] w-auto opacity-75 transform hover:scale-95 cursor-pointer"
+              class="h-[400px] md:h-[500px] w-auto opacity-75 transform hover:scale-95 cursor-pointer"
             >
               <!-- Desktop Shape -->
               <clipPath id="roundedShape">
                 <path
                   d="M40 0
-                    Q 120 20, 500 50 
-                    Q 600 60, 600 140
-                    L 600 380
-                    Q 600 420, 520 440 
-                    Q 320 430, 40 480
-                    Q 0 480, 0 440
-                    L 0 60
-                    Q 0 20, 40 0 Z"
+          Q 120 20, 500 50 
+          Q 600 60, 600 140
+          L 600 380
+          Q 600 420, 520 440 
+          Q 320 430, 40 480
+          Q 0 480, 0 440
+          L 0 60
+          Q 0 20, 40 0 Z"
                 />
               </clipPath>
 
-              <!-- Mobile Shape (new ID) -->
+              <!-- Mobile Shape -->
               <clipPath id="roundedShape2">
                 <path
                   d="M50 0
-                    Q 150 0, 450 20 
-                    Q 600 80, 580 200
-                    L 600 350
-                    Q 580 430, 400 460 
-                    Q 200 440, 30 470
-                    Q 0 460, 0 420
-                    L 0 50
-                    Q 0 10, 50 0 Z"
+          Q 150 0, 450 20 
+          Q 600 80, 580 200
+          L 600 350
+          Q 580 430, 400 460 
+          Q 200 440, 30 470
+          Q 0 460, 0 420
+          L 0 50
+          Q 0 10, 50 0 Z"
                 />
               </clipPath>
 
@@ -389,12 +389,15 @@
                 class="block md:hidden"
               />
             </svg>
+
+            <!-- ✅ Button mobile -->
             <button
-              class="text-black bg-[#F5F3FF] font-general h-10 w-[190px] rounded-3xl md:hidden absolute"
+              class="absolute bottom-20 text-black bg-[#F5F3FF] font-general h-10 w-[190px] rounded-3xl md:hidden"
             >
               DISCOVER PROLOGUE
             </button>
           </div>
+
           <p
             class="text-[#F5F3FF] font-genarl text-left ml-[65vw] mt-[28rem] hidden md:block"
           >
@@ -409,6 +412,7 @@
           </button>
         </div>
       </section>
+      <section class="w-full h-screen bg-white"></section>
     </main>
   </body>
 </html>
