@@ -16,12 +16,17 @@
     <link rel="stylesheet" href="style.css" />
 
     <title>Awwwards</title>
+
+    <script src="script.js" defer></script>
   </head>
   <body>
     <header
-      class="w-[95%] h-18 bg-black fixed top-4 left-5 rounded-xl font-general text-xs z-20"
+      id="mainHeader"
+      class="w-full md:w-[95%] h-18 bg-black fixed top-4 md:left-5 rounded-xl font-general text-xs z-20 transition-colors duration-500 transition-transform duration-500"
     >
-      <section class="w-full h-auto p-4 flex justify-between items-center">
+      <section
+        class="w-[95%] mx-auto h-auto p-4 flex justify-between items-center"
+      >
         <div class="flex gap-6 items-center">
           <img src="./Images/logo.png" alt="Logo-Icon" class="h-10 w-auto" />
           <div
@@ -39,6 +44,7 @@
         </ul>
       </section>
     </header>
+
     <main>
       <section class="h-screen w-[100%]">
         <video
