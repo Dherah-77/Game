@@ -62,3 +62,50 @@ window.addEventListener("scroll", () => {
     gamingText.style.color = "white";
   }
 });
+
+// Discover text
+const discoverText = document.getElementById("discoverText");
+
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        discoverText.classList.remove("opacity-0", "translate-x-10");
+        discoverText.classList.add("opacity-100", "translate-x-0");
+      } else {
+        discoverText.classList.remove("opacity-100", "translate-x-0");
+        discoverText.classList.add("opacity-0", "translate-x-10");
+      }
+    });
+  },
+  { threshold: 0.2 }
+);
+observer.observe(discoverText);
+
+// Expanding Image
+
+const zoomImage = document.getElementById("zoomImage");
+const nextSection = document.getElementById("nextSection");
+
+window.addEventListener("scroll", () => {
+  const rect = zoomImage.getBoundingClientRect();
+  const nextRect = nextSection.getBoundingClientRect();
+
+  // Start zoom when image hits top of viewport
+  const startPoint = 0;
+  // Zoom completes after one viewport height of scroll
+  const endPoint = window.innerHeight;
+
+  // Calculate zoom progress between 0 and 1
+  let progress = (startPoint - rect.top) / endPoint;
+  progress = Math.min(Math.max(progress, 0), 1);
+
+  // Prevent zoom beyond 1 if next section starts showing
+  if (nextRect.top <= window.innerHeight) {
+    progress = Math.min(progress, 1);
+  }
+
+  // Scale image from 1 to 3
+  const scale = 1 + progress * 2;
+  zoomImage.style.transform = `scale(${scale})`;
+});
