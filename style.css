@@ -52,3 +52,7 @@
 .font-zentry {
   font-family: "Zentry", sans-serif;
 }
+
+#hero video {
+  transition: clip-path 0.2s linear;
+}

@@ -17,12 +17,38 @@ window.addEventListener("scroll", () => {
 
   // 🔹 Scroll direction check
   if (window.scrollY > lastScrollY && window.scrollY > 100) {
-    console.log("Scrolling DOWN → Hide header");
     header.style.transform = "translateY(-120%)";
   } else {
-    console.log("Scrolling UP → Show header");
     header.style.transform = "translateY(0)";
   }
 
   lastScrollY = window.scrollY;
+});
+
+// Hero 1
+const section = document.getElementById("hero");
+const video = document.getElementById("heroVideo");
+
+window.addEventListener("scroll", () => {
+  const sectionTop = section.offsetTop;
+  const sectionHeight = section.offsetHeight;
+  const scrollY = window.scrollY;
+
+  // Calculate how far you've scrolled through the section (0 to 1)
+  let progress = (scrollY - sectionTop) / sectionHeight;
+  progress = Math.min(Math.max(progress, 0), 1);
+
+  //Top corners
+  const topLeftX = 0 + (10 - 0) * progress;
+  const topRightX = 100 - (100 - 90) * progress;
+  //Bottom corners
+  const bottomLeftY = 100 - (100 - 90) * progress;
+  const bottomRightY = 100 - (100 - 75) * progress;
+
+  video.style.clipPath = `polygon(
+    ${topLeftX}% 0%,        /* top-left */
+    ${topRightX}% 0%,       /* top-right */
+    100% ${bottomRightY}%,  /* bottom-right */
+    0% ${bottomLeftY}%      /* bottom-left */
+  )`;
 });

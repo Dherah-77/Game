@@ -46,9 +46,10 @@
     </header>
 
     <main>
-      <section class="h-screen w-[100%]">
+      <section id="hero" class="h-screen w-full relative">
         <video
-          class="w-[100%] h-screen object-cover"
+          id="heroVideo"
+          class="w-full h-screen object-cover"
           src="./Videos/hero-1.mp4"
           type="video/mp4"
           autoplay
@@ -56,6 +57,8 @@
           loop
           playsinline
         ></video>
+
+        <!-- Text Content -->
         <div class="absolute top-14 z-10 w-auto h-auto p-8">
           <p class="font-zentry text-white font-bold text-6xl md:text-[12rem]">
             REDEFINE
@@ -72,6 +75,7 @@
             <img src="./Images/play.svg" alt="Prod-logo" /> WATCH TRAILER
           </div>
         </div>
+
         <div
           class="absolute bottom-4 right-0 z-10 w-auto h-auto text-white text-6xl md:text-[12rem] p-2 font-zentry"
         >
