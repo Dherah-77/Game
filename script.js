@@ -84,56 +84,45 @@ observer.observe(discoverText);
 
 // Expanding Image
 
-const isMobile = window.matchMedia("(max-width: 640px)").matches;
 const zoomImage = document.getElementById("zoomImage");
 const parent = zoomImage.parentElement;
+const zoomSection = document.getElementById("zoomSection");
+const nextSection = zoomSection.nextElementSibling;
 
 window.addEventListener("scroll", () => {
   const parentRect = parent.getBoundingClientRect();
+  const nextSectionRect = nextSection.getBoundingClientRect();
   const viewportHeight = window.innerHeight;
   const viewportWidth = window.innerWidth;
 
-  if (parentRect.top <= 0 && parentRect.bottom >= viewportHeight) {
-    const stuckScroll = Math.abs(parentRect.top);
-    const imgStartWidth = zoomImage.offsetWidth;
-    const imgStartHeight = zoomImage.offsetHeight;
+  const imgStartWidth = zoomImage.offsetWidth;
+  const imgStartHeight = zoomImage.offsetHeight;
 
-    const maxScrollForZoom = parent.offsetHeight - viewportHeight;
-    let progress = Math.min(stuckScroll / maxScrollForZoom, 1);
+  // Calculate scale factors
+  const scaleX = viewportWidth / imgStartWidth;
+  const scaleY = parent.offsetHeight / imgStartHeight;
+  let maxScale = Math.max(scaleX, scaleY);
 
-    if (isMobile) {
-      // ✅ Only stretch horizontally on mobile
-      const scaleX = viewportWidth / imgStartWidth;
-      const scale = 1 + (scaleX - 1) * progress;
-      zoomImage.style.transform = `scaleX(${scale}) scaleY(1)`;
-    } else {
-      // ✅ DESKTOP: ensure it fully covers screen both width AND height
-      const scaleX = viewportWidth / imgStartWidth;
-      const scaleY = viewportHeight / imgStartHeight;
+  // ✅ Force fill width for laptops
+  if (viewportWidth > viewportHeight) {
+    maxScale = scaleX;
+  }
 
-      // ✅ Use the **largest scale factor** so it fills both directions
-      const targetScale = Math.max(scaleX, scaleY);
+  // ✅ Soft cap to avoid insane zooms on ultra-wide screens
+  if (maxScale > 4) maxScale = 4;
 
-      // ✅ Interpolate scale gradually
-      const currentScale = 1 + (targetScale - 1) * progress;
+  // Smooth scroll
+  const maxScroll = (parent.offsetHeight - viewportHeight) * 2;
+  const scrolled = Math.min(Math.abs(parentRect.top), maxScroll);
+  const progress = scrolled / maxScroll;
 
-      zoomImage.style.transform = `translateX(-50%) scale(${currentScale})`;
-    }
+  const scale = 1 + (maxScale - 1) * progress;
+
+  if (parentRect.top <= 0 && nextSectionRect.top > 0) {
+    zoomImage.style.transform = `scale(${scale})`;
   } else if (parentRect.top > 0) {
-    // Reset when above section
-    zoomImage.style.transform = isMobile
-      ? "scaleX(1) scaleY(1)"
-      : "translateX(-50%) scale(1)";
-  } else if (parentRect.bottom < viewportHeight) {
-    // ✅ Final lock scale when past section
-    if (isMobile) {
-      const scaleX = viewportWidth / zoomImage.offsetWidth;
-      zoomImage.style.transform = `scaleX(${scaleX}) scaleY(1)`;
-    } else {
-      const scaleX = viewportWidth / zoomImage.offsetWidth;
-      const scaleY = viewportHeight / zoomImage.offsetHeight;
-      const targetScale = Math.max(scaleX, scaleY);
-      zoomImage.style.transform = `translateX(-50%) scale(${targetScale})`;
-    }
+    zoomImage.style.transform = "scale(1)";
+  } else if (nextSectionRect.top <= 0) {
+    zoomImage.style.transform = `scale(${maxScale})`;
   }
 });
