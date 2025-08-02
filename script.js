@@ -84,28 +84,47 @@ observer.observe(discoverText);
 
 // Expanding Image
 
+const isMobile = window.matchMedia("(max-width: 640px)").matches;
 const zoomImage = document.getElementById("zoomImage");
-const nextSection = document.getElementById("nextSection");
+const parent = zoomImage.parentElement;
 
 window.addEventListener("scroll", () => {
-  const rect = zoomImage.getBoundingClientRect();
-  const nextRect = nextSection.getBoundingClientRect();
+  const parentRect = parent.getBoundingClientRect();
+  const viewportHeight = window.innerHeight;
+  const viewportWidth = window.innerWidth;
 
-  // Start zoom when image hits top of viewport
-  const startPoint = 0;
-  // Zoom completes after one viewport height of scroll
-  const endPoint = window.innerHeight;
+  if (parentRect.top <= 0 && parentRect.bottom >= viewportHeight) {
+    const stuckScroll = Math.abs(parentRect.top);
+    const imgStartWidth = zoomImage.offsetWidth;
+    const imgStartHeight = zoomImage.offsetHeight;
 
-  // Calculate zoom progress between 0 and 1
-  let progress = (startPoint - rect.top) / endPoint;
-  progress = Math.min(Math.max(progress, 0), 1);
+    const maxScrollForZoom = parent.offsetHeight - viewportHeight;
+    let progress = Math.min(stuckScroll / maxScrollForZoom, 1);
 
-  // Prevent zoom beyond 1 if next section starts showing
-  if (nextRect.top <= window.innerHeight) {
-    progress = Math.min(progress, 1);
+    if (isMobile) {
+      const scaleX = viewportWidth / imgStartWidth;
+      const scale = 1 + (scaleX - 1) * progress;
+      zoomImage.style.transform = `scaleX(${scale}) scaleY(1)`;
+    } else {
+      const scaleToFit = Math.max(
+        viewportWidth / imgStartWidth,
+        viewportHeight / imgStartHeight
+      );
+      const scale = 1 + (scaleToFit - 1) * progress;
+      zoomImage.style.transform = `scale(${scale})`;
+    }
+  } else if (parentRect.top > 0) {
+    zoomImage.style.transform = isMobile ? "scaleX(1) scaleY(1)" : "scale(1)";
+  } else if (parentRect.bottom < viewportHeight) {
+    if (isMobile) {
+      const scaleX = viewportWidth / zoomImage.offsetWidth;
+      zoomImage.style.transform = `scaleX(${scaleX}) scaleY(1)`;
+    } else {
+      const scaleToFit = Math.max(
+        viewportWidth / zoomImage.offsetWidth,
+        viewportHeight / zoomImage.offsetHeight
+      );
+      zoomImage.style.transform = `scale(${scaleToFit})`;
+    }
   }
-
-  // Scale image from 1 to 3
-  const scale = 1 + progress * 2;
-  zoomImage.style.transform = `scale(${scale})`;
 });
