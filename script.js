@@ -102,29 +102,38 @@ window.addEventListener("scroll", () => {
     let progress = Math.min(stuckScroll / maxScrollForZoom, 1);
 
     if (isMobile) {
+      // ✅ Only stretch horizontally on mobile
       const scaleX = viewportWidth / imgStartWidth;
       const scale = 1 + (scaleX - 1) * progress;
       zoomImage.style.transform = `scaleX(${scale}) scaleY(1)`;
     } else {
-      const scaleToFit = Math.max(
-        viewportWidth / imgStartWidth,
-        viewportHeight / imgStartHeight
-      );
-      const scale = 1 + (scaleToFit - 1) * progress;
-      zoomImage.style.transform = `scale(${scale})`;
+      // ✅ DESKTOP: ensure it fully covers screen both width AND height
+      const scaleX = viewportWidth / imgStartWidth;
+      const scaleY = viewportHeight / imgStartHeight;
+
+      // ✅ Use the **largest scale factor** so it fills both directions
+      const targetScale = Math.max(scaleX, scaleY);
+
+      // ✅ Interpolate scale gradually
+      const currentScale = 1 + (targetScale - 1) * progress;
+
+      zoomImage.style.transform = `translateX(-50%) scale(${currentScale})`;
     }
   } else if (parentRect.top > 0) {
-    zoomImage.style.transform = isMobile ? "scaleX(1) scaleY(1)" : "scale(1)";
+    // Reset when above section
+    zoomImage.style.transform = isMobile
+      ? "scaleX(1) scaleY(1)"
+      : "translateX(-50%) scale(1)";
   } else if (parentRect.bottom < viewportHeight) {
+    // ✅ Final lock scale when past section
     if (isMobile) {
       const scaleX = viewportWidth / zoomImage.offsetWidth;
       zoomImage.style.transform = `scaleX(${scaleX}) scaleY(1)`;
     } else {
-      const scaleToFit = Math.max(
-        viewportWidth / zoomImage.offsetWidth,
-        viewportHeight / zoomImage.offsetHeight
-      );
-      zoomImage.style.transform = `scale(${scaleToFit})`;
+      const scaleX = viewportWidth / zoomImage.offsetWidth;
+      const scaleY = viewportHeight / zoomImage.offsetHeight;
+      const targetScale = Math.max(scaleX, scaleY);
+      zoomImage.style.transform = `translateX(-50%) scale(${targetScale})`;
     }
   }
 });
