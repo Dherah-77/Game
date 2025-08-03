@@ -98,21 +98,17 @@ window.addEventListener("scroll", () => {
   const imgStartWidth = zoomImage.offsetWidth;
   const imgStartHeight = zoomImage.offsetHeight;
 
-  // Calculate scale factors
   const scaleX = viewportWidth / imgStartWidth;
   const scaleY = parent.offsetHeight / imgStartHeight;
   let maxScale = Math.max(scaleX, scaleY);
 
-  // ✅ Force fill width for laptops
   if (viewportWidth > viewportHeight) {
     maxScale = scaleX;
   }
 
-  // ✅ Soft cap to avoid insane zooms on ultra-wide screens
   if (maxScale > 4) maxScale = 4;
 
-  // Smooth scroll
-  const maxScroll = (parent.offsetHeight - viewportHeight) * 2;
+  const maxScroll = (parent.offsetHeight - viewportHeight) * 3; // Increase this to slow zoom
   const scrolled = Math.min(Math.abs(parentRect.top), maxScroll);
   const progress = scrolled / maxScroll;
 
