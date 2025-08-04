@@ -98,27 +98,27 @@ window.addEventListener("scroll", () => {
   const imgStartWidth = zoomImage.offsetWidth;
   const imgStartHeight = zoomImage.offsetHeight;
 
-  const scaleX = viewportWidth / imgStartWidth;
-  const scaleY = parent.offsetHeight / imgStartHeight;
-  let maxScale = Math.max(scaleX, scaleY);
+  const targetScaleX = viewportWidth / imgStartWidth;
+  const targetScaleY = viewportHeight / imgStartHeight;
 
-  if (viewportWidth > viewportHeight) {
-    maxScale = scaleX;
-  }
+  // Calculate scrollable distance for zoom: from image top at viewport top until next section top at viewport top
+  const zoomStart = 0;
+  const zoomEnd = nextSectionRect.top;
+  const scrollRange = zoomEnd - zoomStart;
+  const validScrollRange = scrollRange > 0 ? scrollRange : 1;
 
-  if (maxScale > 4) maxScale = 4;
+  // How far the image has scrolled past the viewport top
+  const currentScroll = Math.abs(parentRect.top);
 
-  const maxScroll = (parent.offsetHeight - viewportHeight) * 3; // Increase this to slow zoom
-  const scrolled = Math.min(Math.abs(parentRect.top), maxScroll);
-  const progress = scrolled / maxScroll;
+  // scrollProgress between 0 and 1
+  let scrollProgress = Math.min(currentScroll / validScrollRange, 1);
 
-  const scale = 1 + (maxScale - 1) * progress;
+  // Clamp scrollProgress if image is still below viewport top or next section passed
+  if (parentRect.top > 0) scrollProgress = 0;
+  if (nextSectionRect.top <= 0) scrollProgress = 1;
 
-  if (parentRect.top <= 0 && nextSectionRect.top > 0) {
-    zoomImage.style.transform = `scale(${scale})`;
-  } else if (parentRect.top > 0) {
-    zoomImage.style.transform = "scale(1)";
-  } else if (nextSectionRect.top <= 0) {
-    zoomImage.style.transform = `scale(${maxScale})`;
-  }
+  const scaleX = 1 + (targetScaleX - 1) * scrollProgress;
+  const scaleY = 1 + (targetScaleY - 1) * scrollProgress;
+
+  zoomImage.style.transform = `scale(${scaleX}, ${scaleY})`;
 });
