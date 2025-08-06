@@ -63,24 +63,26 @@ window.addEventListener("scroll", () => {
   }
 });
 
-// Discover text
-const discoverText = document.getElementById("discoverText");
+// SLIDING TEXT
+const scrollAnimatedTexts = document.querySelectorAll(".scroll-animate");
 
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
+      const el = entry.target;
       if (entry.isIntersecting) {
-        discoverText.classList.remove("opacity-0", "translate-x-10");
-        discoverText.classList.add("opacity-100", "translate-x-0");
+        el.classList.remove("opacity-0", "translate-x-10");
+        el.classList.add("opacity-100", "translate-x-0");
       } else {
-        discoverText.classList.remove("opacity-100", "translate-x-0");
-        discoverText.classList.add("opacity-0", "translate-x-10");
+        el.classList.remove("opacity-100", "translate-x-0");
+        el.classList.add("opacity-0", "translate-x-10");
       }
     });
   },
   { threshold: 0.2 }
 );
-observer.observe(discoverText);
+
+scrollAnimatedTexts.forEach((el) => observer.observe(el));
 
 // Expanding Image
 
