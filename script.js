@@ -101,19 +101,15 @@ window.addEventListener("scroll", () => {
   const targetScaleX = viewportWidth / imgStartWidth;
   const targetScaleY = viewportHeight / imgStartHeight;
 
-  // Calculate scrollable distance for zoom: from image top at viewport top until next section top at viewport top
   const zoomStart = 0;
   const zoomEnd = nextSectionRect.top;
   const scrollRange = zoomEnd - zoomStart;
   const validScrollRange = scrollRange > 0 ? scrollRange : 1;
 
-  // How far the image has scrolled past the viewport top
   const currentScroll = Math.abs(parentRect.top);
 
-  // scrollProgress between 0 and 1
   let scrollProgress = Math.min(currentScroll / validScrollRange, 1);
 
-  // Clamp scrollProgress if image is still below viewport top or next section passed
   if (parentRect.top > 0) scrollProgress = 0;
   if (nextSectionRect.top <= 0) scrollProgress = 1;
 
@@ -121,4 +117,23 @@ window.addEventListener("scroll", () => {
   const scaleY = 1 + (targetScaleY - 1) * scrollProgress;
 
   zoomImage.style.transform = `scale(${scaleX}, ${scaleY})`;
+});
+
+//Light On BUtton
+const buttons = document.querySelectorAll(".glow-button");
+
+buttons.forEach((button) => {
+  const glow = button.querySelector(".glow-effect");
+
+  button.addEventListener("mousemove", (e) => {
+    const rect = button.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    glow.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(180, 150, 255, 0.4), transparent 40%)`;
+  });
+
+  button.addEventListener("mouseleave", () => {
+    glow.style.background = "transparent";
+  });
 });

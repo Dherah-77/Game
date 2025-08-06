@@ -79,6 +79,17 @@
 }
 
 /* ✅ Only buttons with this class will trigger the animation */
-.bounce-btn:hover span {
-  animation: bounceText 0.3s ease forwards;
+.glow-button .glow-effect {
+  background: transparent;
+  width: 100%;
+  height: 100%;
+  transition: background 0.2s ease;
+}
+
+.glow-button:hover .glow-effect {
+  background: radial-gradient(
+    circle at var(--x) var(--y),
+    rgba(180, 150, 255, 0.4),
+    transparent 40%
+  );
 }
