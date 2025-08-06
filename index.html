@@ -19,7 +19,7 @@
 
     <script src="script.js" defer></script>
   </head>
-  <body>
+  <body class="overflow-x-hidden">
     <header
       id="mainHeader"
       class="w-full md:w-[95%] h-18 bg-black fixed top-4 md:left-5 rounded-xl font-general text-xs z-20 transition-colors duration-500 transition-transform duration-500"
@@ -73,7 +73,7 @@
             class="bounce-btn bg-[#EDFF66] text-black h-8 w-[200px] justify-center items-center rounded-3xl gap-2 flex mt-2 font-general text-xs"
           >
             <img src="./Images/play.svg" alt="Prod-logo" />
-            <span>WATCH TRAILER</span>
+            <span class="bounce-text inline-block">WATCH TRAILER</span>
           </button>
         </div>
 
@@ -359,17 +359,15 @@
         <div
           class="mt-[200px] text-center w-full h-[60vh] md:h-screen relative"
         >
-          <div class="overflow-hidden">
-            <p class="w-full h-auto text-[#DFDFF0] text-sm font-general">
-              THE MULTIVERSAL IP WORLD
-            </p>
-            <p
-              class="scroll-animate w-full h-auto text-[#DFDFF0] text-[60px] font-zentry leading-[0.8] mt-4 opacity-0 translate-x-10 transition-all duration-700 delay-300"
-            >
-              THE STORY OF<br />
-              A HIDDEN REALM
-            </p>
-          </div>
+          <p class="w-full h-auto text-[#DFDFF0] text-sm font-general">
+            THE MULTIVERSAL IP WORLD
+          </p>
+          <p
+            class="scroll-animate w-full h-auto text-[#DFDFF0] text-[60px] font-zentry leading-[0.8] mt-4 opacity-0 translate-x-10 transition-all duration-700 delay-300"
+          >
+            THE STORY OF<br />
+            A HIDDEN REALM
+          </p>
 
           <!-- Image Wrapper -->
           <div
@@ -459,16 +457,15 @@
         <div
           class="relative w-[90vw] h-[80vh] bg-black rounded-xl flex flex-col justify-center items-center"
         >
-          <div class="overflow-hidden">
-            <p class="text-[#DFDFF0] font-general text-[10px]">JOIN ZENTRY</p>
-            <p
-              class="scroll-animate font-zentry whitespace-pre-line text-center text-white text-[72px] md:text-[96px] leading-[0.8] z-10 opacity-0 translate-x-10 transition-all duration-700 delay-300"
-            >
-              <span class="whitespace-pre-wrap">LET'S BUILD THE</span>
-              <span class="whitespace-pre-wrap">NEW ERA OF</span>
-              GaMING TOGETHER.
-            </p>
-          </div>
+          <p class="text-[#DFDFF0] font-general text-[10px]">JOIN ZENTRY</p>
+          <p
+            class="scroll-animate font-zentry whitespace-pre-line text-center text-white text-[72px] md:text-[96px] leading-[0.8] z-10 opacity-0 translate-x-10 transition-all duration-700 delay-300"
+          >
+            <span class="whitespace-pre-wrap">LET'S BUILD THE</span>
+            <span class="whitespace-pre-wrap">NEW ERA OF</span>
+            GaMING TOGETHER.
+          </p>
+
           <button
             class="text-black bg-[#F5F3FF] font-general text-sm h-10 w-[140px] rounded-3xl mt-4"
           >

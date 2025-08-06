@@ -35,7 +35,7 @@ window.addEventListener("scroll", () => {
   const sectionHeight = section.offsetHeight;
   const scrollY = window.scrollY;
 
-  // Calculate how far you've scrolled through the section (0 to 1)
+  //how far you've scrolled
   let progress = (scrollY - sectionTop) / sectionHeight;
   progress = Math.min(Math.max(progress, 0), 1);
 
@@ -47,7 +47,7 @@ window.addEventListener("scroll", () => {
   const bottomLeftY = 100 - (100 - 90) * progress;
   const bottomRightY = 100 - (100 - 75) * progress;
 
-  // ✅ Update video shape
+  // video shape
   video.style.clipPath = `polygon(
     ${topLeftX}% 0%,        
     ${topRightX}% 0%,       
@@ -55,7 +55,7 @@ window.addEventListener("scroll", () => {
     0% ${bottomLeftY}%      
   )`;
 
-  // ✅ Switch text color once video section is halfway scrolled
+  // text color
   if (progress >= 0.5) {
     gamingText.style.color = "black";
   } else {
@@ -137,5 +137,33 @@ buttons.forEach((button) => {
 
   button.addEventListener("mouseleave", () => {
     glow.style.background = "transparent";
+  });
+});
+
+// Bouncing Buttons
+const bottons = document.querySelectorAll(".bounce-btn");
+
+bottons.forEach((botton) => {
+  const text = botton.querySelector(".bounce-text");
+
+  botton.addEventListener("mouseenter", () => {
+    text.classList.remove("bounce-out");
+    void text.offsetWidth; // force reflow
+    text.classList.add("bounce-in");
+  });
+
+  botton.addEventListener("mouseleave", () => {
+    text.classList.remove("bounce-in");
+    void text.offsetWidth;
+    text.classList.add("bounce-out");
+  });
+
+  text.addEventListener("animationend", (e) => {
+    if (e.animationName === "bounceOut") {
+      // Reset position and opacity after bounce-out so it's visible again
+      text.classList.remove("bounce-out");
+      text.style.opacity = "1";
+      text.style.transform = "translateY(0)";
+    }
   });
 });
