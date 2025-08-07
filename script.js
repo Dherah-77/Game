@@ -28,14 +28,14 @@ window.addEventListener("scroll", () => {
 // Hero 1
 const section = document.getElementById("hero");
 const video = document.getElementById("heroVideo");
-const gamingText = document.getElementById("gamingText"); // ✅ grab the text
+const gamingTexts = document.querySelectorAll(".gamingText");
 
 window.addEventListener("scroll", () => {
   const sectionTop = section.offsetTop;
   const sectionHeight = section.offsetHeight;
   const scrollY = window.scrollY;
 
-  //how far you've scrolled
+  // How far you've scrolled
   let progress = (scrollY - sectionTop) / sectionHeight;
   progress = Math.min(Math.max(progress, 0), 1);
 
@@ -55,12 +55,10 @@ window.addEventListener("scroll", () => {
     0% ${bottomLeftY}%      
   )`;
 
-  // text color
-  if (progress >= 0.5) {
-    gamingText.style.color = "black";
-  } else {
-    gamingText.style.color = "white";
-  }
+  // text color change based on scroll
+  gamingTexts.forEach((gamingText) => {
+    gamingText.style.color = progress >= 0.5 ? "black" : "white";
+  });
 });
 
 // SLIDING TEXT
