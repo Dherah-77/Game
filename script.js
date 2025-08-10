@@ -57,7 +57,7 @@ window.addEventListener("scroll", () => {
 
   // text color change based on scroll
   gamingTexts.forEach((gamingText) => {
-    gamingText.style.color = progress >= 0.5 ? "black" : "[#053F03]";
+    gamingText.style.color = progress >= 0.5 ? "black" : "#053F03";
   });
 });
 
