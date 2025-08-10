@@ -57,7 +57,7 @@ window.addEventListener("scroll", () => {
 
   // text color change based on scroll
   gamingTexts.forEach((gamingText) => {
-    gamingText.style.color = progress >= 0.5 ? "black" : "white";
+    gamingText.style.color = progress >= 0.5 ? "black" : "[#053F03]";
   });
 });
 
@@ -165,3 +165,10 @@ bottons.forEach((botton) => {
     }
   });
 });
+
+/* color codes: 
+#053F03
+#73CF70
+#FFFFFF
+#00000
+ */
