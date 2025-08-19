@@ -168,16 +168,46 @@ bottons.forEach((botton) => {
 
 // Video Auto-Play
 
-window.addEventListener("load", () => {
-  const videos = document.querySelectorAll("video");
+document.addEventListener("DOMContentLoaded", () => {
+  const videos = Array.from(document.querySelectorAll("video")).filter((v) =>
+    v.hasAttribute("autoplay")
+  ); // only those with autoplay
 
-  videos.forEach((video) => {
-    if (video.hasAttribute("autoplay")) {
-      video.muted = true; // ensure muted (required for autoplay)
-      video.play().catch((err) => {
-        console.log(`Autoplay prevented for ${video.id || video.src}:`, err);
-      });
+  function ensureAttrs(v) {
+    v.setAttribute("muted", "");
+    v.setAttribute("playsinline", "");
+    if (!v.hasAttribute("preload")) v.setAttribute("preload", "auto");
+    v.muted = true;
+    v.playsInline = true;
+  }
+
+  function tryPlay(v) {
+    const start = () => {
+      const p = v.play();
+      if (p && p.catch) {
+        p.catch((err) => {
+          console.debug(
+            "Autoplay prevented:",
+            v.id || v.currentSrc || v.src,
+            err
+          );
+          // fallback: play on first gesture
+          ["click", "touchend", "keydown"].forEach((evt) =>
+            document.addEventListener(evt, () => v.play(), { once: true })
+          );
+        });
+      }
+    };
+    if (v.readyState >= 2) {
+      start();
+    } else {
+      v.addEventListener("canplay", start, { once: true });
     }
+  }
+
+  videos.forEach((v) => {
+    ensureAttrs(v);
+    tryPlay(v);
   });
 });
 
