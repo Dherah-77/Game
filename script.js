@@ -166,6 +166,21 @@ bottons.forEach((botton) => {
   });
 });
 
+// Video Auto-Play
+
+window.addEventListener("load", () => {
+  const videos = document.querySelectorAll("video");
+
+  videos.forEach((video) => {
+    if (video.hasAttribute("autoplay")) {
+      video.muted = true; // ensure muted (required for autoplay)
+      video.play().catch((err) => {
+        console.log(`Autoplay prevented for ${video.id || video.src}:`, err);
+      });
+    }
+  });
+});
+
 /* color codes: 
 #053F03
 #73CF70
