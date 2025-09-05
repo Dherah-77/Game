@@ -98,25 +98,21 @@ window.addEventListener("scroll", () => {
   const imgStartWidth = zoomImage.offsetWidth;
   const imgStartHeight = zoomImage.offsetHeight;
 
-  const targetScaleX = viewportWidth / imgStartWidth;
-  const targetScaleY = viewportHeight / imgStartHeight;
+  // Use a single scale factor to preserve aspect ratio
+  const targetScale = Math.min(
+    viewportWidth / imgStartWidth,
+    viewportHeight / imgStartHeight
+  );
 
-  const zoomStart = 0;
-  const zoomEnd = nextSectionRect.top;
-  const scrollRange = zoomEnd - zoomStart;
-  const validScrollRange = scrollRange > 0 ? scrollRange : 1;
-
+  const scrollRange = nextSectionRect.top > 0 ? nextSectionRect.top : 1;
   const currentScroll = Math.abs(parentRect.top);
 
-  let scrollProgress = Math.min(currentScroll / validScrollRange, 1);
-
+  let scrollProgress = Math.min(currentScroll / scrollRange, 1);
   if (parentRect.top > 0) scrollProgress = 0;
   if (nextSectionRect.top <= 0) scrollProgress = 1;
 
-  const scaleX = 1 + (targetScaleX - 1) * scrollProgress;
-  const scaleY = 1 + (targetScaleY - 1) * scrollProgress;
-
-  zoomImage.style.transform = `scale(${scaleX}, ${scaleY})`;
+  const scale = 1 + (targetScale - 1) * scrollProgress;
+  zoomImage.style.transform = `scale(${scale})`;
 });
 
 //Light On BUtton
